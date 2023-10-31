@@ -11,6 +11,7 @@ login_url = '/auth/login'
 check_url = '/user/checkin'
 info_url = '/user/profile'
 origin_url = 'https://ikuuu.art'
+ui = 'https://'
 test_text = '官网域名已更改'
 
 header = {
@@ -21,24 +22,23 @@ data = {
         'email': email,
         'passwd': passwd
 }
-try:
-    url_test = requests.get(origin_url)
-    print(url_test.text) 
-    if test_text in url_test.text :         
+
+url_test = requests.get(origin_url)
+print(url_test.text) 
+op = re.compile(r'官网域名已更改') 
+test = op.findall(url_test.text)
+if test[0] !='':         
       a = re.compile(r'ikuuu.[a-z]{2,}') 
       b = a.findall(url_test.text)[0]
-      response = json.loads(session.post(url=b+login_url,headers=header,data=data).text)
+      response = json.loads(session.post(url=ui+b+login_url,headers=header,data=data).text)
       print(response['msg']) 
-      info_html = session.get(url=b+info_url,headers=header).text
-      result = json.loads(session.post(url=b+check_url,headers=header).text)
+      info_html = session.get(url=ui+b+info_url,headers=header).text
+      result = json.loads(session.post(url=ui+b+check_url,headers=header).text)
       print(result['msg'])
-    else:
+else:
      response = json.loads(session.post(url=origin_url+login_url,headers=header,data=data).text)
      print(response['msg']) 
      info_html = session.get(url=origin_url+info_url,headers=header).text
      result = json.loads(session.post(url=origin_url+check_url,headers=header).text)
      print(result['msg'])  
-except:
-    content = '签到失败'
-    print(content)
 
