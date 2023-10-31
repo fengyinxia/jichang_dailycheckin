@@ -24,7 +24,6 @@ data = {
 }
 
 url_test = requests.get(origin_url)
-print(url_test.text) 
 op = re.compile(r'官网域名已更改') 
 test = op.findall(url_test.text)
 if test[0] !='':         
