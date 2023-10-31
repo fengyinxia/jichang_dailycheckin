@@ -10,7 +10,7 @@ passwd = os.environ.get('PASSWD')
 login_url = '/auth/login'
 check_url = '/user/checkin'
 info_url = '/user/profile'
-origin_url = 'https://ikuuu.me'
+origin_url = 'https://ikuuu.art'
 test_text = '官网域名已更改'
 
 header = {
@@ -23,6 +23,7 @@ data = {
 }
 try:
     url_test = requests.get(origin_url)
+
     if test_text in url_test.text :         
       a = re.compile(r'ikuuu.[a-z]{2,}') 
       b = a.findall(url_test.text)[0]
