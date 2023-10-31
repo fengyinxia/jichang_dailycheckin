@@ -23,7 +23,7 @@ data = {
 }
 try:
     url_test = requests.get(origin_url)
-
+    print(url_test.text) 
     if test_text in url_test.text :         
       a = re.compile(r'ikuuu.[a-z]{2,}') 
       b = a.findall(url_test.text)[0]
