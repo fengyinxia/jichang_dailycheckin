@@ -10,7 +10,7 @@ passwd = os.environ.get('PASSWD')
 login_url = '/auth/login'
 check_url = '/user/checkin'
 info_url = '/user/profile'
-origin_url = 'https://ikuuu.art'
+origin_url = 'https://ikuuu.me'
 ui = 'https://'
 test_text = '官网域名已更改'
 
