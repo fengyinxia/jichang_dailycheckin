@@ -2,7 +2,7 @@ name: "Airport Checkin"
 
 on:
   schedule:
-    - cron: "0 22 * * *"  # scheduled at 06:00 (UTC+8) everyday
+    - cron: "0 22 * * *"  # 每天 22:00 UTC（即 UTC+8 的 06:00）
   workflow_dispatch:
 
 env:
@@ -11,19 +11,18 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # if: github.ref == 'refs/heads/master'
 
     steps:
       - name: Checkout master
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          # ref: master
 
-      - name: Set up python
-        uses: actions/setup-python@v2
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.7
+          python-version: '3.9'  # 使用仍受支持的 Python 版本
+          architecture: 'x64'
 
       - name: Random sleep
         if: github.event_name == 'schedule'
@@ -33,10 +32,11 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+
       - name: Run sign
         env:
           SCKEY: ${{ secrets.SCKEY }}
           EMAIL: ${{ secrets.EMAIL }}
           PASSWD: ${{ secrets.PASSWD }}
         run: |
-          python3 ./main.py
+          python ./main.py
