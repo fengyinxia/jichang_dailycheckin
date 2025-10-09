@@ -10,12 +10,12 @@ passwd = os.environ.get('PASSWD')
 login_url = '/auth/login'
 check_url = '/user/checkin'
 info_url = '/user/profile'
-origin_url = 'https://ikuuu.me'
+origin_url = 'https://ikuuu.de'
 ui = 'https://'
 test_text = '官网域名已更改'
 
 header = {
-        'origin': 'https://ikuuu.me',
+        'origin': 'https://ikuuu.de',
         'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36'
 }
 data = {
